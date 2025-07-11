@@ -12,16 +12,16 @@
             box-sizing: border-box;
         }
         
-     body {
-    font-family: 'Lora', serif;
-    background: linear-gradient(rgba(250, 249, 247, 0.85), rgba(250, 249, 247, 0.85)), 
-                url('images/sol.png');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    color: #2a2a2a;
-    line-height: 1.7;
-}
+        body {
+            font-family: 'Lora', serif;
+            background: linear-gradient(rgba(250, 249, 247, 0.85), rgba(250, 249, 247, 0.85)), 
+                        url('images/sol.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #2a2a2a;
+            line-height: 1.7;
+        }
 
         /* Header */
         .header {
@@ -36,6 +36,7 @@
             justify-content: center;
             text-align: center;
             position: relative;
+            padding: 20px;
         }
 
         .header::before {
@@ -53,26 +54,27 @@
         .hero-content {
             position: relative;
             z-index: 2;
+            max-width: 100%;
         }
 
         .cafe-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 5.5rem;
+            font-size: clamp(3rem, 8vw, 5.5rem);
             font-weight: 400;
             font-style: italic;
             color: #ffffff;
             margin-bottom: 1rem;
             text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
-            letter-spacing: 3px;
+            letter-spacing: 2px;
         }
 
         .cafe-subtitle {
             font-family: 'Crimson Text', serif;
-            font-size: 1.3rem;
+            font-size: clamp(1rem, 3vw, 1.3rem);
             color: #f0f0f0;
             margin-bottom: 2rem;
             font-weight: 400;
-            letter-spacing: 4px;
+            letter-spacing: 2px;
             text-transform: uppercase;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
@@ -81,19 +83,21 @@
             display: inline-block;
             background: rgba(255, 255, 255, 0.15);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 12px 30px;
+            padding: 12px 20px;
             border-radius: 30px;
             color: #ffffff;
-            font-size: 0.95rem;
+            font-size: clamp(0.8rem, 2.5vw, 0.95rem);
             font-weight: 500;
             backdrop-filter: blur(10px);
             text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            max-width: 90%;
+            word-wrap: break-word;
         }
 
         /* Navigation */
         .navigation {
             background: #ffffff;
-            padding: 30px 0;
+            padding: 20px 0;
             border-bottom: 1px solid #f0ede8;
             position: sticky;
             top: 0;
@@ -102,27 +106,29 @@
         }
 
         .nav-container {
-            max-width: 800px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
 
         .menu-tabs {
             display: flex;
             justify-content: center;
-            gap: 60px;
+            gap: 30px;
+            flex-wrap: wrap;
         }
 
         .tab-link {
             text-decoration: none;
             color: #8a7968;
             font-family: 'Crimson Text', serif;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
             font-weight: 600;
-            padding: 15px 0;
+            padding: 10px 15px;
             position: relative;
             transition: all 0.3s ease;
             letter-spacing: 1px;
+            white-space: nowrap;
         }
 
         .tab-link::after {
@@ -149,9 +155,9 @@
 
         /* Menu Content */
         .menu-content {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 60px 20px;
         }
 
         .section {
@@ -170,12 +176,12 @@
 
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 50px;
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: clamp(2rem, 6vw, 3rem);
             color: #2a2a2a;
             margin-bottom: 15px;
             font-weight: 500;
@@ -183,15 +189,16 @@
 
         .section-description {
             font-family: 'Crimson Text', serif;
-            font-size: 1.1rem;
+            font-size: clamp(1rem, 2.5vw, 1.1rem);
             color: #8a7968;
             font-style: italic;
+            padding: 0 20px;
         }
 
         /* Menu Items */
         .menu-list {
             display: grid;
-            gap: 40px;
+            gap: 30px;
         }
 
         .menu-item {
@@ -207,7 +214,6 @@
 
         .menu-item:hover {
             border-left-color: #c9a96e;
-            transform: translateX(10px);
             box-shadow: 0 12px 35px rgba(201, 169, 110, 0.15);
         }
 
@@ -219,7 +225,7 @@
         }
 
         .item-content {
-            padding: 30px;
+            padding: 25px;
         }
 
         .item-top {
@@ -227,44 +233,51 @@
             justify-content: space-between;
             align-items: flex-start;
             margin-bottom: 15px;
+            gap: 15px;
+        }
+
+        .item-info {
+            flex: 1;
         }
 
         .item-info h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: clamp(1.2rem, 4vw, 1.5rem);
             color: #2a2a2a;
             margin-bottom: 8px;
             font-weight: 500;
+            line-height: 1.3;
         }
 
         .item-price {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem;
+            font-size: clamp(1.2rem, 4vw, 1.4rem);
             color: #c9a96e;
             font-weight: 600;
-            min-width: 80px;
+            min-width: 70px;
             text-align: right;
+            flex-shrink: 0;
         }
 
         .item-description {
             color: #666;
-            font-size: 1rem;
+            font-size: clamp(0.9rem, 2.5vw, 1rem);
             margin-bottom: 20px;
             line-height: 1.6;
         }
 
         .item-tags {
             display: flex;
-            gap: 12px;
+            gap: 8px;
             flex-wrap: wrap;
         }
 
         .tag {
             background: rgba(201, 169, 110, 0.1);
             color: #8a7968;
-            padding: 6px 15px;
+            padding: 6px 12px;
             border-radius: 20px;
-            font-size: 0.85rem;
+            font-size: clamp(0.75rem, 2vw, 0.85rem);
             font-weight: 500;
             border: 1px solid rgba(201, 169, 110, 0.2);
         }
@@ -275,9 +288,9 @@
             right: 15px;
             background: #c9a96e;
             color: #ffffff;
-            padding: 8px 20px;
+            padding: 8px 15px;
             border-radius: 20px;
-            font-size: 0.8rem;
+            font-size: clamp(0.7rem, 2vw, 0.8rem);
             font-weight: 600;
             letter-spacing: 1px;
             text-transform: uppercase;
@@ -289,19 +302,18 @@
         .footer {
             background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
             color: #ffffff;
-            padding: 80px 0 40px;
+            padding: 60px 20px 40px;
         }
 
         .footer-content {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
             text-align: center;
         }
 
         .footer-logo {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
             font-style: italic;
             color: #c9a96e;
             margin-bottom: 40px;
@@ -310,22 +322,23 @@
         .footer-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
+            gap: 30px;
+            margin-bottom: 40px;
             text-align: left;
         }
 
         .info-block h4 {
             color: #c9a96e;
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 3vw, 1.3rem);
             margin-bottom: 15px;
         }
 
         .info-block p {
             color: #cccccc;
             margin-bottom: 8px;
-            font-size: 0.95rem;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+            line-height: 1.6;
         }
 
         .divider {
@@ -335,38 +348,149 @@
             margin: 0 auto 30px;
         }
 
-        /* Responsive */
+        .footer-copyright {
+            color: #999;
+            margin-top: 20px;
+            font-size: clamp(0.8rem, 2vw, 0.9rem);
+            line-height: 1.5;
+        }
+
+        /* Enhanced Mobile Styles */
         @media (max-width: 768px) {
+            .header {
+                min-height: 80vh;
+                background-attachment: scroll;
+            }
+            
             .cafe-logo {
-                font-size: 4rem;
+                letter-spacing: 1px;
+            }
+            
+            .cafe-subtitle {
+                letter-spacing: 1px;
             }
             
             .menu-tabs {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
+                gap: 15px;
+                padding: 0 10px;
             }
             
-            .section-title {
-                font-size: 2.2rem;
+            .tab-link {
+                padding: 8px 12px;
+                font-size: 0.95rem;
+            }
+            
+            .menu-content {
+                padding: 40px 15px;
+            }
+            
+            .section-header {
+                margin-bottom: 30px;
+            }
+            
+            .menu-list {
+                gap: 25px;
+            }
+            
+            .item-content {
+                padding: 20px;
             }
             
             .item-top {
                 flex-direction: column;
                 gap: 10px;
+                align-items: flex-start;
             }
             
             .item-price {
-                text-align: left;
+                align-self: flex-end;
+                min-width: auto;
             }
             
-            .menu-item {
-                padding: 30px;
+            .item-tags {
+                gap: 6px;
+            }
+            
+            .featured-badge {
+                top: 10px;
+                right: 10px;
+                padding: 6px 12px;
             }
             
             .footer-info {
                 grid-template-columns: 1fr;
                 text-align: center;
+                gap: 25px;
+            }
+            
+            .navigation {
+                padding: 15px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .location-badge {
+                padding: 10px 15px;
+                font-size: 0.8rem;
+            }
+            
+            .menu-tabs {
+                gap: 10px;
+            }
+            
+            .tab-link {
+                padding: 6px 10px;
+                font-size: 0.9rem;
+            }
+            
+            .menu-content {
+                padding: 30px 10px;
+            }
+            
+            .item-image {
+                height: 150px;
+            }
+            
+            .item-content {
+                padding: 15px;
+            }
+            
+            .item-description {
+                margin-bottom: 15px;
+            }
+            
+            .tag {
+                padding: 4px 8px;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Landscape mobile orientation */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .header {
+                min-height: 100vh;
+            }
+            
+            .cafe-logo {
+                font-size: 3.5rem;
+            }
+            
+            .cafe-subtitle {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Touch-friendly improvements */
+        @media (hover: none) and (pointer: coarse) {
+            .menu-item:hover {
+                transform: none;
+            }
+            
+            .tab-link {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
         }
     </style>
@@ -645,29 +769,6 @@
                         </div>
                     </div>
                 </div>
-            </div>Marinated chicken breast with creamy tahini sauce, pickled vegetables, and fresh herbs wrapped in warm pita bread</p>
-                        </div>
-                        <span class="item-price">$7.75</span>
-                    </div>
-                    <div class="item-tags">
-                        <span class="tag">Local Favorite</span>
-                        <span class="tag">Spiced</span>
-                    </div>
-                </div>
-
-                <div class="menu-item">
-                    <div class="item-top">
-                        <div class="item-info">
-                            <h3>Artisan Falafel Wrap</h3>
-                            <p class="item-description">House-made crispy falafel with smooth hummus, fresh tabbouleh, and tahini drizzle in soft lavash bread</p>
-                        </div>
-                        <span class="item-price">$6.75</span>
-                    </div>
-                    <div class="item-tags">
-                        <span class="tag">Vegan</span>
-                        <span class="tag">Healthy</span>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -680,58 +781,70 @@
             <div class="menu-list">
                 <div class="menu-item">
                     <div class="featured-badge">Signature</div>
-                    <div class="item-top">
-                        <div class="item-info">
-                            <h3>Sol Margherita</h3>
-                            <p class="item-description">San Marzano tomatoes, fresh buffalo mozzarella, aromatic basil, and a drizzle of premium Lebanese olive oil on our signature dough</p>
+                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sol Margherita" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Sol Margherita</h3>
+                                <p class="item-description">San Marzano tomatoes, fresh buffalo mozzarella, aromatic basil, and a drizzle of premium Lebanese olive oil on our signature dough</p>
+                            </div>
+                            <span class="item-price">$12.50</span>
                         </div>
-                        <span class="item-price">$12.50</span>
-                    </div>
-                    <div class="item-tags">
-                        <span class="tag">Classic</span>
-                        <span class="tag">Fresh</span>
+                        <div class="item-tags">
+                            <span class="tag">Classic</span>
+                            <span class="tag">Fresh</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="item-top">
-                        <div class="item-info">
-                            <h3>Zaatar & Cheese</h3>
-                            <p class="item-description">Traditional Lebanese zaatar blend with creamy akkawi cheese, fresh tomatoes, and extra virgin olive oil</p>
+                    <img src="https://images.unsplash.com/photo-1565299507177-b0ac66763828?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Zaatar & Cheese" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Zaatar & Cheese</h3>
+                                <p class="item-description">Traditional Lebanese zaatar blend with creamy akkawi cheese, fresh tomatoes, and extra virgin olive oil</p>
+                            </div>
+                            <span class="item-price">$11.25</span>
                         </div>
-                        <span class="item-price">$11.25</span>
-                    </div>
-                    <div class="item-tags">
-                        <span class="tag">Lebanese</span>
-                        <span class="tag">Traditional</span>
+                        <div class="item-tags">
+                            <span class="tag">Lebanese</span>
+                            <span class="tag">Traditional</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="item-top">
-                        <div class="item-info">
-                            <h3>Mediterranean Veggie</h3>
-                            <p class="item-description">Roasted eggplant, zucchini, bell peppers, Kalamata olives, and crumbled feta cheese with herb oil</p>
+                    <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mediterranean Veggie" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Mediterranean Veggie</h3>
+                                <p class="item-description">Roasted eggplant, zucchini, bell peppers, Kalamata olives, and crumbled feta cheese with herb oil</p>
+                            </div>
+                            <span class="item-price">$13.50</span>
                         </div>
-                        <span class="item-price">$13.50</span>
-                    </div>
-                    <div class="item-tags">
-                        <span class="tag">Vegetarian</span>
-                        <span class="tag">Roasted</span>
+                        <div class="item-tags">
+                            <span class="tag">Vegetarian</span>
+                            <span class="tag">Roasted</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="menu-item">
-                    <div class="item-top">
-                        <div class="item-info">
-                            <h3>Prosciutto & Arugula</h3>
-                            <p class="item-description">Thin crust topped with Italian prosciutto, fresh wild arugula, aged parmesan, and a touch of truffle oil</p>
+                    <img src="https://images.unsplash.com/photo-1571997478779-2adcbbe9ab2f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Prosciutto & Arugula" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Prosciutto & Arugula</h3>
+                                <p class="item-description">Thin crust topped with Italian prosciutto, fresh wild arugula, aged parmesan, and a touch of truffle oil</p>
+                            </div>
+                            <span class="item-price">$16.25</span>
                         </div>
-                        <span class="item-price">$16.25</span>
-                    </div>
-                    <div class="item-tags">
-                        <span class="tag">Premium</span>
-                        <span class="tag">Truffle</span>
+                        <div class="item-tags">
+                            <span class="tag">Premium</span>
+                            <span class="tag">Truffle</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -761,7 +874,7 @@
                 </div>
             </div>
             <div class="divider"></div>
-            <p style="color: #999; margin-top: 20px;">© 2025 Sol Café. Crafted with ☕ and ❤️ in Tyre, Lebanon</p>
+            <p class="footer-copyright">© 2025 Sol Café. Crafted with ☕ and ❤️ in Tyre, Lebanon</p>
         </div>
     </footer>
 
@@ -796,6 +909,44 @@
                 });
             });
         });
+
+        // Enhanced mobile menu handling
+        function handleResize() {
+            const navigation = document.querySelector('.navigation');
+            const header = document.querySelector('.header');
+            
+            if (window.innerWidth <= 768) {
+                header.style.backgroundAttachment = 'scroll';
+            } else {
+                header.style.backgroundAttachment = 'fixed';
+            }
+        }
+
+        // Initial check and event listener for resize
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
+        // Touch gesture handling for better mobile experience
+        let startY = 0;
+        let currentY = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            startY = e.touches[0].clientY;
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            currentY = e.touches[0].clientY;
+        });
+
+        // Prevent zoom on double tap for better mobile experience
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', (e) => {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                e.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
     </script>
 </body>
 </html>
