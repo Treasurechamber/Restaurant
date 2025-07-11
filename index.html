@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sol Café - Menu</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+     body {
+    font-family: 'Lora', serif;
+    background: linear-gradient(rgba(250, 249, 247, 0.85), rgba(250, 249, 247, 0.85)), 
+                url('images/sol.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: #2a2a2a;
+    line-height: 1.7;
+}
+
+        /* Header */
+        .header {
+            min-height: 100vh;
+            background: linear-gradient(rgba(42, 42, 42, 0.6), rgba(42, 42, 42, 0.4)), 
+                        url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: radial-gradient(circle at 1px 1px, rgba(201,169,110,0.2) 1px, transparent 0);
+            background-size: 40px 40px;
+            opacity: 0.4;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cafe-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 5.5rem;
+            font-weight: 400;
+            font-style: italic;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+            letter-spacing: 3px;
+        }
+
+        .cafe-subtitle {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.3rem;
+            color: #f0f0f0;
+            margin-bottom: 2rem;
+            font-weight: 400;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .location-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            padding: 12px 30px;
+            border-radius: 30px;
+            color: #ffffff;
+            font-size: 0.95rem;
+            font-weight: 500;
+            backdrop-filter: blur(10px);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        /* Navigation */
+        .navigation {
+            background: #ffffff;
+            padding: 30px 0;
+            border-bottom: 1px solid #f0ede8;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .menu-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .tab-link {
+            text-decoration: none;
+            color: #8a7968;
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            padding: 15px 0;
+            position: relative;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+        }
+
+        .tab-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: #c9a96e;
+            transition: width 0.3s ease;
+        }
+
+        .tab-link:hover,
+        .tab-link.active {
+            color: #c9a96e;
+        }
+
+        .tab-link.active::after,
+        .tab-link:hover::after {
+            width: 100%;
+        }
+
+        /* Menu Content */
+        .menu-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #2a2a2a;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .section-description {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.1rem;
+            color: #8a7968;
+            font-style: italic;
+        }
+
+        /* Menu Items */
+        .menu-list {
+            display: grid;
+            gap: 40px;
+        }
+
+        .menu-item {
+            background: #ffffff;
+            padding: 0;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            border-left: 4px solid transparent;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item:hover {
+            border-left-color: #c9a96e;
+            transform: translateX(10px);
+            box-shadow: 0 12px 35px rgba(201, 169, 110, 0.15);
+        }
+
+        .item-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 15px 15px 0 0;
+        }
+
+        .item-content {
+            padding: 30px;
+        }
+
+        .item-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .item-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: #2a2a2a;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .item-price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            color: #c9a96e;
+            font-weight: 600;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        .item-description {
+            color: #666;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .item-tags {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(201, 169, 110, 0.1);
+            color: #8a7968;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border: 1px solid rgba(201, 169, 110, 0.2);
+        }
+
+        .featured-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #c9a96e;
+            color: #ffffff;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3);
+            z-index: 2;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            color: #ffffff;
+            padding: 80px 0 40px;
+        }
+
+        .footer-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-style: italic;
+            color: #c9a96e;
+            margin-bottom: 40px;
+        }
+
+        .footer-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+            text-align: left;
+        }
+
+        .info-block h4 {
+            color: #c9a96e;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .info-block p {
+            color: #cccccc;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .divider {
+            width: 100px;
+            height: 1px;
+            background: #c9a96e;
+            margin: 0 auto 30px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .cafe-logo {
+                font-size: 4rem;
+            }
+            
+            .menu-tabs {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+            }
+            
+            .item-top {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .item-price {
+                text-align: left;
+            }
+            
+            .menu-item {
+                padding: 30px;
+            }
+            
+            .footer-info {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="hero-content">
+            <h1 class="cafe-logo">Sol Café</h1>
+            <p class="cafe-subtitle">The Loaf & Coffee</p>
+            <div class="location-badge">
+                📍 Nabih Berri Street, Tyre, Lebanon
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navigation">
+        <div class="nav-container">
+            <div class="menu-tabs">
+                <a href="#" class="tab-link active" data-tab="coffee">Coffee</a>
+                <a href="#" class="tab-link" data-tab="pastries">Pastries</a>
+                <a href="#" class="tab-link" data-tab="sandwiches">Sandwiches</a>
+                <a href="#" class="tab-link" data-tab="pizza">Pizza</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu Content -->
+    <main class="menu-content">
+        <!-- Coffee Section -->
+        <section id="coffee" class="section active">
+            <div class="section-header">
+                <h2 class="section-title">Specialty Coffee</h2>
+                <p class="section-description">Carefully crafted blends from around the world</p>
+            </div>
+            <div class="menu-list">
+                <div class="menu-item">
+                    <div class="featured-badge">Signature</div>
+                    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Sol Espresso" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Sol Espresso</h3>
+                                <p class="item-description">Our signature house blend featuring notes of dark chocolate and caramel, perfectly extracted for that morning boost you deserve</p>
+                            </div>
+                            <span class="item-price">$3.50</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Strong</span>
+                            <span class="tag">House Blend</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1570968915860-54d5c301fa9f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mediterranean Latte" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Mediterranean Latte</h3>
+                                <p class="item-description">Smooth espresso with steamed milk, delicately infused with cardamom and a gentle touch of rose water</p>
+                            </div>
+                            <span class="item-price">$4.25</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Aromatic</span>
+                            <span class="tag">Local Twist</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1461023058943-07fcbe16d735?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Cold Brew Tonic" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Cold Brew Tonic</h3>
+                                <p class="item-description">Refreshing cold brew coffee paired with premium tonic water, garnished with lemon zest and fresh mint</p>
+                            </div>
+                            <span class="item-price">$4.75</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Refreshing</span>
+                            <span class="tag">Summer Special</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Turkish Coffee" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Turkish Coffee</h3>
+                                <p class="item-description">Traditional Turkish coffee brewed with cardamom, served with authentic lokum and a glass of water</p>
+                            </div>
+                            <span class="item-price">$4.00</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Traditional</span>
+                            <span class="tag">Cultural</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Classic Cappuccino" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Classic Cappuccino</h3>
+                                <p class="item-description">Authentic Italian cappuccino with perfectly steamed milk foam and rich, aromatic crema</p>
+                            </div>
+                            <span class="item-price">$3.75</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Classic</span>
+                            <span class="tag">Creamy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pastries Section -->
+        <section id="pastries" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Fresh Pastries</h2>
+                <p class="section-description">Handcrafted daily with the finest ingredients</p>
+            </div>
+            <div class="menu-list">
+                <div class="menu-item">
+                    <div class="featured-badge">Popular</div>
+                    <img src="https://images.unsplash.com/photo-1555507036-ab794f4eed40?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Honey Almond Croissant" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Honey Almond Croissant</h3>
+                                <p class="item-description">Buttery, flaky croissant filled with rich almond cream and drizzled with pure Lebanese mountain honey</p>
+                            </div>
+                            <span class="item-price">$4.25</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Buttery</span>
+                            <span class="tag">Local Honey</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1586444248902-2f64eddc13df?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Zaatar Cheese Danish" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Zaatar Cheese Danish</h3>
+                                <p class="item-description">Traditional flaky pastry topped with aromatic Lebanese zaatar, creamy akkawi cheese, and premium olive oil</p>
+                            </div>
+                            <span class="item-price">$3.75</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Savory</span>
+                            <span class="tag">Lebanese</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Chocolate Pain au Chocolat" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Chocolate Pain au Chocolat</h3>
+                                <p class="item-description">Classic French pastry filled with premium Belgian dark chocolate, baked fresh every morning</p>
+                            </div>
+                            <span class="item-price">$3.50</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Chocolate</span>
+                            <span class="tag">Fresh Daily</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1563227812-0ea4c22717fe?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pistachio Baklava Muffin" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Pistachio Baklava Muffin</h3>
+                                <p class="item-description">Moist, tender muffin inspired by traditional baklava, featuring crushed pistachios, honey, and crispy phyllo topping</p>
+                            </div>
+                            <span class="item-price">$4.00</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Pistachios</span>
+                            <span class="tag">Fusion</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sandwiches Section -->
+        <section id="sandwiches" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Gourmet Sandwiches</h2>
+                <p class="section-description">Artisanal creations made with premium ingredients</p>
+            </div>
+            <div class="menu-list">
+                <div class="menu-item">
+                    <div class="featured-badge">Chef's Choice</div>
+                    <img src="https://images.unsplash.com/photo-1539252554453-80ab65ce3586?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mediterranean Halloumi" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Mediterranean Halloumi</h3>
+                                <p class="item-description">Grilled halloumi cheese with roasted Mediterranean vegetables, basil pesto, and sun-dried tomatoes on artisanal focaccia</p>
+                            </div>
+                            <span class="item-price">$8.50</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Vegetarian</span>
+                            <span class="tag">Grilled</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1553909489-cd47e0ef937f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Beirut Club" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Beirut Club</h3>
+                                <p class="item-description">Premium turkey breast, crispy beef bacon, fresh lettuce, ripe tomatoes, and house-made garlic aioli on toasted sourdough</p>
+                            </div>
+                            <span class="item-price">$9.25</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Classic</span>
+                            <span class="tag">Hearty</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ca4b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Grilled Chicken Shawarma" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Grilled Chicken Shawarma</h3>
+                                <p class="item-description">Marinated chicken breast with creamy tahini sauce, pickled vegetables, and fresh herbs wrapped in warm pita bread</p>
+                            </div>
+                            <span class="item-price">$7.75</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Local Favorite</span>
+                            <span class="tag">Spiced</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <img src="https://images.unsplash.com/photo-1551218808-94e220e084d2?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Artisan Falafel Wrap" class="item-image">
+                    <div class="item-content">
+                        <div class="item-top">
+                            <div class="item-info">
+                                <h3>Artisan Falafel Wrap</h3>
+                                <p class="item-description">House-made crispy falafel with smooth hummus, fresh tabbouleh, and tahini drizzle in soft lavash bread</p>
+                            </div>
+                            <span class="item-price">$6.75</span>
+                        </div>
+                        <div class="item-tags">
+                            <span class="tag">Vegan</span>
+                            <span class="tag">Healthy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>Marinated chicken breast with creamy tahini sauce, pickled vegetables, and fresh herbs wrapped in warm pita bread</p>
+                        </div>
+                        <span class="item-price">$7.75</span>
+                    </div>
+                    <div class="item-tags">
+                        <span class="tag">Local Favorite</span>
+                        <span class="tag">Spiced</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-top">
+                        <div class="item-info">
+                            <h3>Artisan Falafel Wrap</h3>
+                            <p class="item-description">House-made crispy falafel with smooth hummus, fresh tabbouleh, and tahini drizzle in soft lavash bread</p>
+                        </div>
+                        <span class="item-price">$6.75</span>
+                    </div>
+                    <div class="item-tags">
+                        <span class="tag">Vegan</span>
+                        <span class="tag">Healthy</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pizza Section -->
+        <section id="pizza" class="section">
+            <div class="section-header">
+                <h2 class="section-title">Artisan Pizza</h2>
+                <p class="section-description">Wood-fired perfection with authentic Mediterranean flavors</p>
+            </div>
+            <div class="menu-list">
+                <div class="menu-item">
+                    <div class="featured-badge">Signature</div>
+                    <div class="item-top">
+                        <div class="item-info">
+                            <h3>Sol Margherita</h3>
+                            <p class="item-description">San Marzano tomatoes, fresh buffalo mozzarella, aromatic basil, and a drizzle of premium Lebanese olive oil on our signature dough</p>
+                        </div>
+                        <span class="item-price">$12.50</span>
+                    </div>
+                    <div class="item-tags">
+                        <span class="tag">Classic</span>
+                        <span class="tag">Fresh</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-top">
+                        <div class="item-info">
+                            <h3>Zaatar & Cheese</h3>
+                            <p class="item-description">Traditional Lebanese zaatar blend with creamy akkawi cheese, fresh tomatoes, and extra virgin olive oil</p>
+                        </div>
+                        <span class="item-price">$11.25</span>
+                    </div>
+                    <div class="item-tags">
+                        <span class="tag">Lebanese</span>
+                        <span class="tag">Traditional</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-top">
+                        <div class="item-info">
+                            <h3>Mediterranean Veggie</h3>
+                            <p class="item-description">Roasted eggplant, zucchini, bell peppers, Kalamata olives, and crumbled feta cheese with herb oil</p>
+                        </div>
+                        <span class="item-price">$13.50</span>
+                    </div>
+                    <div class="item-tags">
+                        <span class="tag">Vegetarian</span>
+                        <span class="tag">Roasted</span>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-top">
+                        <div class="item-info">
+                            <h3>Prosciutto & Arugula</h3>
+                            <p class="item-description">Thin crust topped with Italian prosciutto, fresh wild arugula, aged parmesan, and a touch of truffle oil</p>
+                        </div>
+                        <span class="item-price">$16.25</span>
+                    </div>
+                    <div class="item-tags">
+                        <span class="tag">Premium</span>
+                        <span class="tag">Truffle</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <h3 class="footer-logo">Sol Café</h3>
+            <div class="divider"></div>
+            <div class="footer-info">
+                <div class="info-block">
+                    <h4>Opening Hours</h4>
+                    <p>Monday - Friday: 7:00 AM - 10:00 PM</p>
+                    <p>Saturday - Sunday: 8:00 AM - 11:00 PM</p>
+                </div>
+                <div class="info-block">
+                    <h4>Contact Information</h4>
+                    <p>📞 +961 XX XXX XXX</p>
+                    <p>📧 hello@solcafe.com</p>
+                </div>
+                <div class="info-block">
+                    <h4>Location</h4>
+                    <p>Nabih Berri Street</p>
+                    <p>Tyre, Lebanon 961</p>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <p style="color: #999; margin-top: 20px;">© 2025 Sol Café. Crafted with ☕ and ❤️ in Tyre, Lebanon</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching functionality
+        const tabLinks = document.querySelectorAll('.tab-link');
+        const sections = document.querySelectorAll('.section');
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all tabs and sections
+                tabLinks.forEach(tab => tab.classList.remove('active'));
+                sections.forEach(section => section.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                link.classList.add('active');
+                
+                // Show corresponding section
+                const targetTab = link.getAttribute('data-tab');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.tab-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.menu-content').scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
